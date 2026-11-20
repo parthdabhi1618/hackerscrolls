@@ -1,0 +1,36 @@
+# Render Blueprint — https://render.com/docs/blueprint-spec
+# Create via: Render Dashboard → New → Blueprint → select this repo.
+services:
+  - type: web
+    name: hackerscrolls
+    runtime: static
+    branch: main
+    autoDeployTrigger: commit
+    buildCommand: npm ci && npm run build
+    staticPublishPath: ./dist
+
+    # react-router uses BrowserRouter: unknown paths must fall back to the app shell.
+    # Render serves existing files (e.g. /assets/*) before applying rewrites.
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+    headers:
+      # Vite fingerprints these files, so they can be cached indefinitely.
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+      # Always revalidate the entry point so new deploys are picked up.
+      - path: /index.html
+        name: Cache-Control
+        value: no-cache, no-store, must-revalidate
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+      - path: /*
+        name: X-Frame-Options
+        value: SAMEORIGIN

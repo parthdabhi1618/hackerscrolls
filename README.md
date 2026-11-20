@@ -1,5 +1,7 @@
 # HackerScrolls
 
+[![Live on Render](https://img.shields.io/badge/Live-hackerscrolls.onrender.com-46E3B7?logo=render&logoColor=white&style=flat-square)](https://hackerscrolls.onrender.com)
+
 Hacker News, unhurried. A sign-in-free reader for Hacker News with a calm, scrollable feed,
 read-only discussions, and restrained liquid-glass chrome.
 
@@ -11,6 +13,32 @@ npm run dev      # http://localhost:5173
 npm run build    # typecheck + production build to dist/
 npm run preview  # serve the production build
 ```
+
+## Deploy to Render
+
+The app is a static Vite build, live at **https://hackerscrolls.onrender.com**.
+
+The included [`render.yaml`](./render.yaml) is a [Render Blueprint](https://render.com/docs/infrastructure-as-code)
+that provisions the site with the correct build settings, SPA fallback, and cache/security headers.
+In Render, choose **New → Blueprint** and select this repository.
+
+To configure it by hand instead, create a **Static Site** with:
+
+| Setting | Value |
+| --- | --- |
+| Branch | `main` |
+| Build command | `npm ci && npm run build` |
+| Publish directory | `dist` |
+
+Then add one rewrite rule so direct links to client-side routes (`/feed/:feed`, `/story/:id`,
+`/settings`) return the app shell:
+
+| Type | Source | Destination |
+| --- | --- | --- |
+| Rewrite | `/*` | `/index.html` |
+
+Render serves files that exist on disk before applying rewrites, so fingerprinted assets under
+`/assets/` are unaffected. Pushes to `main` deploy automatically.
 
 ## What's inside
 
@@ -58,6 +86,7 @@ npm run preview  # serve the production build
 ```
 .
 ├── index.html / vite.config.ts / tsconfig.json   app entry + build config
+├── render.yaml             Render Blueprint (static site + SPA rewrite + headers)
 ├── public/                 static files served as-is (favicon)
 ├── walls/                  full-resolution source photos for the backdrops
 ├── .agents/                optional local AI-agent skills (dev tooling only)
