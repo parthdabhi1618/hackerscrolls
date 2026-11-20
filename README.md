@@ -11,34 +11,40 @@ read-only discussions, and restrained liquid-glass chrome.
 npm install
 npm run dev      # http://localhost:5173
 npm run build    # typecheck + production build to dist/
-npm run preview  # serve the production build
+npm run preview  # serve the production build via Vite
+npm start        # serve dist/ via the production server on $PORT (default 10000)
 ```
+
+`npm run dev` is local-only: Vite binds to `localhost:5173`. Production uses `npm start`.
 
 ## Deploy to Render
 
-The app is a static Vite build, live at **https://hackerscrolls.onrender.com**.
+Live at **https://hackerscrolls.onrender.com**, deployed as a Render **Web Service**.
+
+> Render's port scan must reach the app on `0.0.0.0:$PORT`. Running `npm run dev` here binds only
+> to `localhost:5173`, which is why a deploy shows "No open ports detected on 0.0.0.0".
+> The start command must be `npm start`.
 
 The included [`render.yaml`](./render.yaml) is a [Render Blueprint](https://render.com/docs/infrastructure-as-code)
-that provisions the site with the correct build settings, SPA fallback, and cache/security headers.
-In Render, choose **New → Blueprint** and select this repository.
-
-To configure it by hand instead, create a **Static Site** with:
+that provisions the service with:
 
 | Setting | Value |
 | --- | --- |
+| Runtime | Node (`NODE_VERSION=22`) |
 | Branch | `main` |
 | Build command | `npm ci && npm run build` |
-| Publish directory | `dist` |
+| Start command | `npm start` |
+| Health check | `/` |
 
-Then add one rewrite rule so direct links to client-side routes (`/feed/:feed`, `/story/:id`,
-`/settings`) return the app shell:
+`npm start` runs [`server.mjs`](./server.mjs), a dependency-free production static server that:
 
-| Type | Source | Destination |
-| --- | --- | --- |
-| Rewrite | `/*` | `/index.html` |
+- binds to `0.0.0.0` on `$PORT` (Render supplies it; defaults to `10000` locally),
+- serves the built `dist/` with correct MIME types, immutable caching for hashed `/assets/*`,
+  and no-cache `index.html`,
+- falls back to `index.html` for client-side routes (`/feed/:feed`, `/story/:id`, `/settings`).
 
-Render serves files that exist on disk before applying rewrites, so fingerprinted assets under
-`/assets/` are unaffected. Pushes to `main` deploy automatically.
+Sync the Blueprint with **New → Blueprint** in Render, or set the fields above on your existing
+Web Service. Pushes to `main` deploy automatically.
 
 ## What's inside
 
@@ -86,7 +92,8 @@ Render serves files that exist on disk before applying rewrites, so fingerprinte
 ```
 .
 ├── index.html / vite.config.ts / tsconfig.json   app entry + build config
-├── render.yaml             Render Blueprint (static site + SPA rewrite + headers)
+├── render.yaml             Render Blueprint (Web Service: build + start command)
+├── server.mjs              dependency-free production static server for dist/
 ├── public/                 static files served as-is (favicon)
 ├── walls/                  full-resolution source photos for the backdrops
 ├── .agents/                optional local AI-agent skills (dev tooling only)
