@@ -1,0 +1,91 @@
+:root {
+  color-scheme: dark;
+
+  /* surfaces — deep basalt ink, never pure black */
+  --ink-0: #101216;
+  --ink-1: #16181d;
+  --ink-2: #1d2129;
+  --ink-3: #262b33;
+  --line: rgba(236, 234, 226, 0.07);
+  --line-strong: rgba(236, 234, 226, 0.15);
+
+  /* text */
+  --paper: #ecebe4;
+  --dim: #b6bac1;
+  --faint: #82878f;
+  --ghost: #42474f;
+
+  /* brand — HN heritage ember, used sparingly */
+  --ember: #ff6d2e;
+  --ember-soft: #ff9257;
+  --ember-ink: #1b120c;
+  --link: #a3bce6;
+
+  /* glass */
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-highlight: rgba(255, 255, 255, 0.16);
+
+  /* rgb triplets for alpha-mixing (theme-aware washes, scrims, shadows) */
+  --veil-rgb: 255 255 255;     /* hover washes + seg fills (light sheen in dark mode) */
+  --paper-rgb: 236 234 226;    /* hairline + text tints */
+  --glass-rgb: 22 25 31;       /* frosted panel bases */
+  --shadow-rgb: 4 6 10;        /* drop shadows */
+  --scrim-rgb: 16 18 22;       /* wallpaper scrim/veil + wall-mode text shadow */
+  --text-wall-shadow: 0 1px 10px rgba(16, 18, 22, 0.62), 0 0 2px rgba(16, 18, 22, 0.4);
+
+  /* type */
+  --serif: 'Newsreader Variable', 'Newsreader', Georgia, 'Times New Roman', serif;
+  --sans: 'IBM Plex Sans Variable', 'IBM Plex Sans', system-ui, 'Segoe UI', 'Helvetica Neue', sans-serif;
+  --mono: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+
+  /* measure + chrome */
+  --measure: 700px;
+  --nav-h: 52px;
+  --side-w: 216px;
+
+  /* radius */
+  --r-card: 14px;
+  --r-panel: 18px;
+  --r-pill: 999px;
+
+  /* motion */
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --speed: 170ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --speed: 0ms;
+  }
+}
+
+/* ---------------- light theme ----------------
+   Warm paper. The ember accent keeps its HN heritage; glass becomes
+   white-frosted, hover washes become ink washes, wallpaper scrims go cream. */
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  --ink-0: #f5f2ea;
+  --ink-1: #edeade;
+  --ink-2: #e6e2d6;
+  --ink-3: #dcd8ca;
+  --line: rgba(28, 26, 21, 0.09);
+  --line-strong: rgba(28, 26, 21, 0.2);
+
+  --paper: #262420;
+  --dim: #55584e;
+  --faint: #7c7869;
+  --ghost: #c9c5b6;
+  --link: #35619e;
+
+  --glass-border: rgba(255, 255, 255, 0.62);
+  --glass-highlight: rgba(255, 255, 255, 0.8);
+
+  --veil-rgb: 46 42 34;
+  --paper-rgb: 26 24 20;
+  --glass-rgb: 252 250 244;
+  --shadow-rgb: 92 80 62;
+  --scrim-rgb: 246 243 236;
+  --text-wall-shadow: 0 1px 10px rgba(246, 243, 236, 0.72), 0 0 2px rgba(246, 243, 236, 0.55);
+}
+

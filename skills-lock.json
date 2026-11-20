@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "skills": {
+    "building-accessible-interfaces": {
+      "source": "osmontero/opencode-skills",
+      "sourceType": "github",
+      "skillPath": "skills/building-accessible-interfaces/SKILL.md",
+      "computedHash": "f0a9e23166d820551677e7fe9cc7239e519a453ee193cd60c8dde32772bd5dde"
+    },
+    "design-system": {
+      "source": "tanveerabid/opencode-skills",
+      "sourceType": "github",
+      "skillPath": ".opencode/skills/design/design-system/SKILL.md",
+      "computedHash": "356b0cd503208271c68ed4c3bff8148a86627b2a1424431ae3bd235b8d041729"
+    },
+    "designing-frontend-interfaces": {
+      "source": "osmontero/opencode-skills",
+      "sourceType": "github",
+      "skillPath": "skills/designing-frontend-interfaces/SKILL.md",
+      "computedHash": "03932bde6d8523fb0975848b839ad1c4b6d070ff7bb3ac6de60a5302de394bec"
+    },
+    "designing-user-experience": {
+      "source": "osmontero/opencode-skills",
+      "sourceType": "github",
+      "skillPath": "skills/designing-user-experience/SKILL.md",
+      "computedHash": "78db0278c8f026786c1c4f3152958b41ccdda10cc6fc7f61f214124796da56fc"
+    },
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/frontend-design/SKILL.md",
+      "computedHash": "89496d5dd00f4810205f351759594fc2742bf8eea85a2f2b2d1de59f4bd91576"
+    },
+    "frontend-ui-engineering": {
+      "source": "addyosmani/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/frontend-ui-engineering/SKILL.md",
+      "computedHash": "49bb6ccfc41753bdd679f368ce75629ae9d424c5b8abc33faf949a4a55f919a1"
+    },
+    "reviewing-interface-quality": {
+      "source": "osmontero/opencode-skills",
+      "sourceType": "github",
+      "skillPath": "skills/reviewing-interface-quality/SKILL.md",
+      "computedHash": "ec2148c26668b534e3537224901832036eed9d737a7467b53229306ac271b982"
+    },
+    "simple-liquid-glass": {
+      "source": "lucaperullo/simple-liquid-glass",
+      "sourceType": "github",
+      "skillPath": "skills/simple-liquid-glass/SKILL.md",
+      "computedHash": "a52ee6d3e75ea9de03049069c5671ee358f5fd40d3784a1f66957bfe65072ba4"
+    },
+    "ui-ux-pro-max": {
+      "source": "tanveerabid/opencode-skills",
+      "sourceType": "github",
+      "skillPath": ".opencode/skills/design/ui-ux-pro-max/SKILL.md",
+      "computedHash": "373632d824eb5139fcd6ba88e4226a0b405bb734e04b22e114a994d80051a77b"
+    },
+    "vercel-react-best-practices": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/react-best-practices/SKILL.md",
+      "computedHash": "3219a1944e404ffc14d1d9d6aef6dd2e3855b81387ee0a044ccbfe14d34c2357"
+    },
+    "web-design-guidelines": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/web-design-guidelines/SKILL.md",
+      "computedHash": "a6a44d5498f7e8f68289902f3dedfc6f38ae0cee1e96527c80724cf27f727c2a"
+    }
+  }
+}
